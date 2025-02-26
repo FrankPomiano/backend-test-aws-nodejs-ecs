@@ -1,0 +1,23 @@
+{
+  "name": "backend-nodejs",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FrankPomiano/backend-test-aws-nodejs-ecs.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FrankPomiano/backend-test-aws-nodejs-ecs/issues"
+  },
+  "homepage": "https://github.com/FrankPomiano/backend-test-aws-nodejs-ecs#readme",
+  "description": "",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
+}
