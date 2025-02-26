@@ -7,7 +7,6 @@ app.use(express.json());
 
 
 
-
 let personas = [];
 
 // Servicio GET para obtener todas las personas
