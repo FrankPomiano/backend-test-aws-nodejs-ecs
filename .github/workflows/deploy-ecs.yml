@@ -27,7 +27,7 @@ jobs:
         id: build-push-image
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: belcorp-0000-demo-${{ env.ENV }}-images-repository
+          ECR_REPOSITORY: belcorp-0001-demo-fpm-${{ env.ENV }}-images-repository
           IMAGE_TAG: ${{ github.sha }}
         run: |
           echo "${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:${{ env.IMAGE_TAG }}"
@@ -35,7 +35,7 @@ jobs:
 
       - name: Download task definition
         run: |
-          aws ecs describe-task-definition --task-definition belcorp-0000-demo-${{ env.ENV }}-task-definition-for-dbt --query taskDefinition > task-definition.json
+          aws ecs describe-task-definition --task-definition belcorp-0001-demo-fpm-${{ env.ENV }}-task-definition-for-dbt --query taskDefinition > task-definition.json
           dir
           cat task-definition.json
 
@@ -44,13 +44,13 @@ jobs:
         uses: aws-actions/amazon-ecs-render-task-definition@v1
         with:
           task-definition: task-definition.json
-          container-name: belcorp-0000-demo-${{ env.ENV }}-task-definition-for-dbt-container
+          container-name: belcorp-0001-demo-fpm-${{ env.ENV }}-task-definition-for-dbt-container
           image: ${{ steps.build-push-image.outputs.image }}
 
       - name: Deploy Amazon ECS task definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: ${{ steps.task-def.outputs.task-definition }}
-          service: belcorp-0000-demo-${{ env.ENV }}-demonet
-          cluster: belcorp-0000-demo-${{ env.ENV }}-cluster-for-dbt
+          service: belcorp-0001-demo-fpm-${{ env.ENV }}-demonet
+          cluster: belcorp-0001-demo-fpm-${{ env.ENV }}-cluster-for-dbt
           wait-for-service-stability: true
